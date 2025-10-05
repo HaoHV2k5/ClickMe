@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đèn Lồng Ước Nguyện Trung Thu 🏮</title>
+    <style>
+        :root {
+            --primary-color: #f4d03f;
+            --secondary-color: #e67e22;
+            --background-color: #0b0f1a;
+            --text-color: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 80%, #1b2735 0%, #090a0f 100%);
+            overflow: hidden;
+            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            position: relative;
+        }
+
+        /* 🌟 Sao */
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: twinkle 3s infinite ease-in-out;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* 🌕 Trăng */
+        .moon {
+            position: absolute;
+            top: 5%;
+            right: 8%;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, #fff9b0 0%, #fdfd96 50%, #f5c46b 80%);
+            border-radius: 50%;
+            box-shadow: 0 0 60px 20px rgba(255, 240, 150, 0.5);
+            animation: moonGlow 5s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes moonGlow {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.2);
+            }
+        }
+
+        /* 🎁 Lời chúc */
+        .moon-festival-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 0 25px rgba(255, 255, 200, 0.2);
+            z-index: 20;
+            transition: opacity 1.5s ease-in-out;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2em;
+            text-shadow: 0 0 10px rgba(255, 230, 100, 0.8);
+        }
+
+        #surpriseBtn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: #1a1a2e;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+            box-shadow: 0 4px 15px rgba(255, 200, 100, 0.4);
+            transition: 0.3s;
+        }
+
+        #surpriseBtn:hover {
+            transform: scale(1.05);
+        }
+
+        /* 🏮 Đèn to đung đưa */
+        #focusLantern {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            z-index: 25;
+            animation: lanternSwing 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes lanternSwing {
+            0% {
+                transform: translate(-50%, -50%) rotate(-5deg) translateX(-12px);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) rotate(4deg) translateX(12px);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(-5deg) translateX(-12px);
+            }
+        }
+
+        .lantern-image {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 25px rgba(255, 200, 100, 0.7)) drop-shadow(0 0 50px rgba(255, 170, 50, 0.5)) brightness(1.1);
+            animation: glow 3s infinite ease-in-out;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                filter: brightness(1.05) drop-shadow(0 0 25px rgba(255, 200, 100, 0.6));
+            }
+
+            50% {
+                filter: brightness(1.25) drop-shadow(0 0 45px rgba(255, 200, 100, 0.9));
+            }
+        }
+
+        /* 🎆 Đèn nhỏ bay */
+        .floating-lantern {
+            position: absolute;
+            bottom: -120px;
+            opacity: 0;
+            cursor: pointer;
+            filter: drop-shadow(0 0 25px rgba(255, 180, 60, 0.6));
+            animation: riseUp linear infinite;
+        }
+
+        @keyframes riseUp {
+            0% {
+                transform: translateY(0) scale(0.8);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+                transform: translateY(-110vh) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-120vh) scale(1.05);
+            }
+        }
+
+        /* Popup */
+        #wishPopup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px 30px;
+            color: #fff;
+            font-size: 1.1em;
+            box-shadow: 0 0 30px rgba(255, 230, 100, 0.4);
+            opacity: 0;
+            z-index: 200;
+            transition: opacity 0.6s ease;
+            text-shadow: 0 0 8px rgba(255, 220, 100, 0.8);
+        }
+
+        #wishOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            z-index: 150;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        /* 📱 Responsive */
+        @media (max-width: 768px) {
+            .moon {
+                width: 130px;
+                height: 130px;
+                top: 4%;
+                right: 6%;
+            }
+
+            #focusLantern {
+                width: 220px;
+                top: 55%;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .moon-festival-container {
+                width: 90%;
+                padding: 20px;
+                font-size: 0.95em;
+            }
+
+            #surpriseBtn {
+                font-size: 0.9em;
+                padding: 8px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .moon {
+                width: 100px;
+                height: 100px;
+                top: 5%;
+                right: 5%;
+            }
+
+            #focusLantern {
+                width: 180px;
+            }
+
+            h1 {
+                font-size: 1.4em;
+            }
+
+            .moon-festival-container {
+                width: 95%;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="moon"></div>
+    <div id="starContainer"></div>
+
+    <div class="moon-festival-container" id="contentContainer">
+        <h1>🌕 Trung Thu Vui Vẻ! 🏮</h1>
+        <p>
+            Gửi tới cậu những lời chúc tốt đẹp nhất dưới ánh trăng rằm tháng Tám.
+            Chúc cậu luôn xinh đẹp, vui vẻ, và rạng rỡ như ánh trăng đêm nay nhé!
+            Mong mọi điều tốt lành và ngọt ngào như chiếc bánh Trung Thu sẽ đến với cậu.
+        </p>
+        <p>Người gửi: H giấu tên</p>
+        <button id="surpriseBtn">Ấn vào đây để xem điều đặc biệt ✨</button>
+    </div>
+
+    <div id="focusLantern">
+        <img src="Lovepik_com-400186713-lanterns.png" alt="Lồng đèn Trung Thu" class="lantern-image" />
+    </div>
+
+    <div id="lanternContainer"></div>
+
+    <div id="wishOverlay"></div>
+    <div id="wishPopup"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const contentContainer = document.getElementById("contentContainer");
+            const surpriseBtn = document.getElementById("surpriseBtn");
+            const focusLantern = document.getElementById("focusLantern");
+            const lanternContainer = document.getElementById("lanternContainer");
+            const wishPopup = document.getElementById("wishPopup");
+            const wishOverlay = document.getElementById("wishOverlay");
+            const starContainer = document.getElementById("starContainer");
+            const bgMusic = new Audio("name.mp3");
+            let playing = false;
+            let lanternsStarted = false;
+
+            const wishes = [
+                "Chúc bạn một mùa Trung Thu tràn ngập niềm vui và tiếng cười! 🌕",
+                "Trăng rằm sáng tỏ, lòng người hạnh phúc! 🏮",
+                "Chúc bạn luôn rạng rỡ như ánh trăng và ngọt ngào như bánh Trung Thu! 🍰",
+                "Chúc bạn có một đêm trăng đầy ấm áp bên người thân yêu 💛",
+                "Trung Thu đến, chúc bạn nhiều niềm vui, sức khỏe và hạnh phúc! 🌸",
+                "Mong ánh trăng soi sáng mọi điều tốt đẹp nhất đến với bạn 🌕✨",
+                "Chúc bạn mãi trẻ trung, vui vẻ và ngập tràn yêu thương 💖",
+                "Trung Thu vui vẻ, bình an và đầy ắp tiếng cười nhé 🥮",
+                "Cầu mong ước nguyện của bạn sẽ bay cao như những chiếc đèn lồng này 🎈",
+                "Chúc bạn một Trung Thu đầy sắc màu và ánh sáng diệu kỳ 🌟"
+            ];
+
+            // 🌟 Tạo sao ngẫu nhiên
+            const starCount = 120;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement("div");
+                star.classList.add("star");
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = Math.random() * 100 + "%";
+                star.style.top = Math.random() * 100 + "%";
+                star.style.animationDuration = 2 + Math.random() * 3 + "s";
+                star.style.animationDelay = Math.random() * 5 + "s";
+                starContainer.appendChild(star);
+            }
+
+            const playMusic = () => {
+                if (!playing) {
+                    bgMusic.loop = true;
+                    bgMusic.play();
+                    playing = true;
+                }
+            };
+
+            function showWish() {
+                const randomWish = wishes[Math.floor(Math.random() * wishes.length)];
+                wishPopup.textContent = randomWish;
+                wishOverlay.style.pointerEvents = "auto";
+                wishOverlay.style.opacity = "1";
+                wishPopup.style.opacity = "1";
+                setTimeout(() => {
+                    wishOverlay.style.opacity = "0";
+                    wishPopup.style.opacity = "0";
+                    setTimeout(() => {
+                        wishOverlay.style.pointerEvents = "none";
+                    }, 500);
+                }, 3500);
+            }
+
+            // 💡 Chỉ tạo đèn khi bấm nút
+            surpriseBtn.addEventListener("click", () => {
+                playMusic();
+                contentContainer.style.opacity = "0";
+                setTimeout(() => {
+                    contentContainer.style.display = "none";
+                    focusLantern.style.opacity = "1";
+
+                    if (!lanternsStarted) {
+                        const lanternCount = 25;
+                        for (let i = 0; i < lanternCount; i++) {
+                            const lantern = document.createElement("img");
+                            lantern.src = "bay.png";
+                            lantern.classList.add("floating-lantern");
+                            lantern.style.left = Math.random() * 100 + "%";
+                            lantern.style.width = 50 + Math.random() * 70 + "px";
+                            const duration = 10 + Math.random() * 10;
+                            const delay = Math.random() * 8;
+                            lantern.style.animationDuration = `${duration}s`;
+                            lantern.style.animationDelay = `${delay}s`;
+                            lantern.addEventListener("click", () => showWish());
+                            lanternContainer.appendChild(lantern);
+                        }
+                        lanternsStarted = true;
+                    }
+                }, 1500);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
